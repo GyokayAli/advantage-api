@@ -30,6 +30,12 @@ namespace Advantage.API
         {
             _connectionString = Configuration["secretConnectionString"];
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy",
+                    c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddEntityFrameworkNpgsql()
